@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class ApiClient {
   static const String baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'https://trendloop-backend.onrender.com',
+    // defaultValue: 'https://trendloop-backend.onrender.com',
   );
 
   final http.Client _client;
