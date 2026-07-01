@@ -4,6 +4,11 @@ import 'package:provider/provider.dart';
 import '../state/app_state.dart';
 import '../theme/app_theme.dart';
 import 'auth_screen.dart';
+import 'profile/my_seller_shop_screen.dart';
+import 'profile/orders_screen.dart';
+import 'profile/settings_screen.dart';
+import 'profile/trust_safety_screen.dart';
+import 'profile/wishlist_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -55,15 +60,12 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 if (user == null)
-                  SizedBox(
-                    width: 110,
-                    child: FilledButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const AuthScreen()),
-                      ),
-                      child: const Text('Sign in'),
+                  FilledButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const AuthScreen()),
                     ),
+                    child: const Text('Sign in'),
                   )
                 else
                   IconButton(
@@ -97,26 +99,31 @@ class ProfileScreen extends StatelessWidget {
             icon: Icons.storefront,
             title: 'My seller shop',
             subtitle: 'Listings, analytics, shipping labels',
+            page: const MySellerShopScreen(),
           ),
           _Tile(
             icon: Icons.receipt_long,
             title: 'Orders',
             subtitle: 'Purchases, returns, disputes',
+            page: const OrdersScreen(),
           ),
           _Tile(
             icon: Icons.favorite,
             title: 'Wishlist',
             subtitle: 'Saved drops and sellers',
+            page: const WishlistScreen(),
           ),
           _Tile(
             icon: Icons.verified_user,
             title: 'Trust & safety',
             subtitle: 'Verification, buyer protection',
+            page: const TrustSafetyScreen(),
           ),
           _Tile(
             icon: Icons.settings,
             title: 'Settings',
             subtitle: 'Payments, addresses, notifications',
+            page: const SettingsScreen(),
           ),
         ],
       ),
@@ -128,10 +135,12 @@ class _Tile extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
+  final Widget page;
   const _Tile({
     required this.icon,
     required this.title,
     required this.subtitle,
+    required this.page,
   });
 
   @override
@@ -143,6 +152,8 @@ class _Tile extends StatelessWidget {
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.w800)),
         subtitle: Text(subtitle),
         trailing: const Icon(Icons.chevron_right),
+        onTap: () =>
+            Navigator.push(context, MaterialPageRoute(builder: (_) => page)),
       ),
     );
   }

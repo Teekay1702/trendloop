@@ -5,6 +5,9 @@ import '../../services/seller_service.dart';
 import '../../state/app_state.dart';
 import '../../theme/app_theme.dart';
 import '../store_profile_screen.dart';
+import '../profile/shipping_labels_screen.dart';
+import '../profile/shop_analytics_screen.dart';
+import '../profile/promotions_screen.dart';
 
 class SellerDashboardScreen extends StatefulWidget {
   const SellerDashboardScreen({super.key});
@@ -43,10 +46,9 @@ class _SellerDashboardScreenState extends State<SellerDashboardScreen> {
         child: FutureBuilder<SellerStoreData>(
           future: future,
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (snapshot.connectionState == ConnectionState.waiting)
               return const Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.hasError) {
+            if (snapshot.hasError)
               return ListView(
                 children: [
                   SizedBox(
@@ -55,7 +57,6 @@ class _SellerDashboardScreenState extends State<SellerDashboardScreen> {
                   ),
                 ],
               );
-            }
             final data = snapshot.data!;
             final revenue = data.products.fold<double>(
               0,
@@ -160,31 +161,55 @@ class _SellerDashboardScreenState extends State<SellerDashboardScreen> {
                   style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                 ),
                 const SizedBox(height: 10),
-                const Card(
+                Card(
                   child: ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.local_shipping,
                       color: AppTheme.hotPink,
                     ),
-                    title: Text('Shipping labels'),
-                    subtitle: Text('Create and track shipments'),
-                    trailing: Icon(Icons.chevron_right),
+                    title: const Text('Shipping labels'),
+                    subtitle: const Text('Create and track shipments'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const ShippingLabelsScreen(),
+                      ),
+                    ),
                   ),
                 ),
-                const Card(
+                Card(
                   child: ListTile(
-                    leading: Icon(Icons.analytics, color: AppTheme.hotPink),
-                    title: Text('Analytics'),
-                    subtitle: Text('Views, favorites, conversions'),
-                    trailing: Icon(Icons.chevron_right),
+                    leading: const Icon(
+                      Icons.analytics,
+                      color: AppTheme.hotPink,
+                    ),
+                    title: const Text('Analytics'),
+                    subtitle: const Text('Views, favorites, conversions'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const ShopAnalyticsScreen(),
+                      ),
+                    ),
                   ),
                 ),
-                const Card(
+                Card(
                   child: ListTile(
-                    leading: Icon(Icons.campaign, color: AppTheme.hotPink),
-                    title: Text('Promotions'),
-                    subtitle: Text('Boost listings and run discounts'),
-                    trailing: Icon(Icons.chevron_right),
+                    leading: const Icon(
+                      Icons.campaign,
+                      color: AppTheme.hotPink,
+                    ),
+                    title: const Text('Promotions'),
+                    subtitle: const Text('Boost listings and run discounts'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const PromotionsScreen(),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -221,7 +246,7 @@ class _Metric extends StatelessWidget {
               Text(
                 label,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w700,
                 ),
               ),

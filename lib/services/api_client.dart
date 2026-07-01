@@ -3,10 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
-  static const String baseUrl = String.fromEnvironment(
-    'API_BASE_URL',
-    // defaultValue: 'https://trendloop-backend.onrender.com',
-  );
+  static const String baseUrl = String.fromEnvironment('API_BASE_URL');
 
   final http.Client _client;
   String? token;

@@ -6,18 +6,26 @@ class ProductService {
 
   ProductService(this._apiClient);
 
-  Future<List<Product>> getProducts({String query = '', String? category}) async {
-    final res = await _apiClient.get('/products', queryParameters: {
-      if (query.isNotEmpty) 'query': query,
-      if (category != null && category != 'All') 'category': category,
-    });
+  Future<List<Product>> getProducts({
+    String query = '',
+    String? category,
+  }) async {
+    final res = await _apiClient.get(
+      '/products',
+      queryParameters: {
+        if (query.isNotEmpty) 'query': query,
+        if (category != null && category != 'All') 'category': category,
+      },
+    );
 
     if (res.statusCode != 200) {
       throw Exception(_apiClient.errorMessage(res, 'Could not load products'));
     }
 
     final decoded = _apiClient.decode(res) as Map<String, dynamic>;
-    return (decoded['products'] as List).map((e) => Product.fromJson(e)).toList();
+    return (decoded['products'] as List)
+        .map((e) => Product.fromJson(e))
+        .toList();
   }
 
   Future<Product> getProductById(String id) async {

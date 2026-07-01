@@ -5,7 +5,9 @@ class OrderService {
 
   OrderService(this._apiClient);
 
-  Future<Map<String, dynamic>> createOrder({Map<String, dynamic>? shippingAddress}) async {
+  Future<Map<String, dynamic>> createOrder({
+    Map<String, dynamic>? shippingAddress,
+  }) async {
     final res = await _apiClient.post('/orders', {
       if (shippingAddress != null) 'shippingAddress': shippingAddress,
     });

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'seller_order_details_screen.dart';
+
 class SellerOrdersScreen extends StatelessWidget {
   const SellerOrdersScreen({super.key});
 
@@ -14,20 +16,34 @@ class SellerOrdersScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
-        children: const [
+        children: [
           Card(
             child: ListTile(
-              leading: Icon(Icons.inbox_outlined),
-              title: Text('No seller orders yet'),
-              subtitle: Text('Orders from buyers will appear here.'),
+              leading: const Icon(Icons.inbox_outlined),
+              title: const Text('No seller orders yet'),
+              subtitle: const Text('Orders from buyers will appear here.'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const SellerOrderDetailsScreen(),
+                ),
+              ),
             ),
           ),
           Card(
             child: ListTile(
-              leading: Icon(Icons.info_outline),
-              title: Text('Next step'),
-              subtitle: Text(
+              leading: const Icon(Icons.info_outline),
+              title: const Text('Next step'),
+              subtitle: const Text(
                 'Add seller-specific order filtering on the backend for production.',
+              ),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const SellerOrdersRoadmapScreen(),
+                ),
               ),
             ),
           ),

@@ -5,7 +5,11 @@ class CartService {
 
   CartService(this._apiClient);
 
-  Future<void> addToCart(String productId, {String? size, int quantity = 1}) async {
+  Future<void> addToCart(
+    String productId, {
+    String? size,
+    int quantity = 1,
+  }) async {
     final res = await _apiClient.post('/cart/items', {
       'productId': productId,
       'size': size,
@@ -13,7 +17,12 @@ class CartService {
     });
 
     if (res.statusCode >= 400) {
-      throw Exception(_apiClient.errorMessage(res, 'Could not add item to cart. Sign in first.'));
+      throw Exception(
+        _apiClient.errorMessage(
+          res,
+          'Could not add item to cart. Sign in first.',
+        ),
+      );
     }
   }
 }
