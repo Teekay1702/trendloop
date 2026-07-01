@@ -48,6 +48,11 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  void setCurrentUser(AppUser user) {
+    currentUser = user;
+    notifyListeners();
+  }
+
   Future<void> login(String email, String password) async {
     final result = await authService.login(email, password);
     currentUser = result.user;

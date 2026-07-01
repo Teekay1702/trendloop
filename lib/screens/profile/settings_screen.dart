@@ -9,6 +9,7 @@ import 'help_center_screen.dart';
 import 'language_region_screen.dart';
 import 'notifications_screen.dart';
 import 'payments_screen.dart';
+import '../verify_email_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -40,6 +41,26 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
+          if (user?.emailVerified != true)
+            Card(
+              color: AppTheme.blush,
+              child: ListTile(
+                leading: const Icon(
+                  Icons.mark_email_unread,
+                  color: AppTheme.hotPink,
+                ),
+                title: const Text(
+                  'Verify email',
+                  style: TextStyle(fontWeight: FontWeight.w900),
+                ),
+                subtitle: const Text('Confirm your email for account security'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const VerifyEmailScreen()),
+                ),
+              ),
+            ),
           const _SettingsTile(
             icon: Icons.payment,
             title: 'Payments',

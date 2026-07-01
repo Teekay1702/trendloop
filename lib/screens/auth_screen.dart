@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../state/app_state.dart';
 import '../theme/app_theme.dart';
+import 'forgot_password_screen.dart';
+import 'verify_email_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   final bool popOnSuccess;
@@ -171,7 +173,18 @@ class _AuthScreenState extends State<AuthScreen> {
                     : 'New here? Create an account',
               ),
             ),
-            if (!isRegister)
+            if (!isRegister) ...[
+              TextButton(
+                onPressed: submitting
+                    ? null
+                    : () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ForgotPasswordScreen(),
+                        ),
+                      ),
+                child: const Text('Forgot password?'),
+              ),
               TextButton.icon(
                 onPressed: submitting
                     ? null
@@ -183,6 +196,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 icon: const Icon(Icons.bolt),
                 label: const Text('Use demo seller account'),
               ),
+            ],
           ],
         ),
       ),
@@ -208,6 +222,17 @@ class _AuthScreenState extends State<AuthScreen> {
         );
       } else {
         await state.login(email.text.trim(), password.text);
+      }
+      if (mounted && isRegister) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Account created. Please verify your email.'),
+          ),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const VerifyEmailScreen()),
+        );
       }
       if (mounted && widget.popOnSuccess && Navigator.canPop(context)) {
         Navigator.pop(context);

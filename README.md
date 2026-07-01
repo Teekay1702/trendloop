@@ -261,3 +261,25 @@ Run tests:
 ```bash
 flutter test
 ```
+
+
+## Email verification and password reset
+
+The mobile app includes screens for email and password workflows:
+
+```text
+lib/screens/verify_email_screen.dart
+lib/screens/forgot_password_screen.dart
+lib/screens/reset_password_screen.dart
+```
+
+Auth service methods:
+
+```dart
+verifyEmail(token)
+resendVerificationEmail()
+forgotPassword(email)
+resetPassword(token: token, password: password)
+```
+
+Current deep-link behavior is not yet implemented. For now, users can paste the token from email into the verification/reset screens. In production, configure universal links/app links to open these screens automatically from Resend email URLs.
