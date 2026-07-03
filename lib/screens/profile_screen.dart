@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../state/app_state.dart';
 import '../theme/app_theme.dart';
-import 'auth_screen.dart';
+import '../screens/auth/login_screen.dart';
 import 'profile/my_seller_shop_screen.dart';
 import 'profile/orders_screen.dart';
 import 'profile/settings_screen.dart';
@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
                   FilledButton(
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const AuthScreen()),
+                      MaterialPageRoute(builder: (_) => const LoginScreen()),
                     ),
                     child: const Text('Sign in'),
                   )
@@ -91,7 +91,7 @@ class ProfileScreen extends StatelessWidget {
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const AuthScreen()),
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
                 ),
               ),
             ),

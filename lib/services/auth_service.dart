@@ -26,7 +26,11 @@ class AuthService {
 
     final decoded = _apiClient.decode(res);
     _apiClient.token = decoded['token'];
-    return AuthResult(token: decoded['token'], user: AppUser.fromJson(decoded['user']), message: decoded['message']);
+    return AuthResult(
+      token: decoded['token'],
+      user: AppUser.fromJson(decoded['user']),
+      message: decoded['message'],
+    );
   }
 
   Future<AuthResult> register({
@@ -52,11 +56,15 @@ class AuthService {
 
     final decoded = _apiClient.decode(res);
     _apiClient.token = decoded['token'];
-    return AuthResult(token: decoded['token'], user: AppUser.fromJson(decoded['user']), message: decoded['message']);
+    return AuthResult(
+      token: decoded['token'],
+      user: AppUser.fromJson(decoded['user']),
+      message: decoded['message'],
+    );
   }
 
-  Future<AuthResult> verifyEmail(String token) async {
-    final res = await _apiClient.post('/auth/email/verify', {'token': token});
+  Future<AuthResult> verifyEmail(String code) async {
+    final res = await _apiClient.post('/auth/email/verify', {'code': code});
 
     if (res.statusCode != 200) {
       throw Exception(_apiClient.errorMessage(res, 'Could not verify email'));
@@ -64,31 +72,48 @@ class AuthService {
 
     final decoded = _apiClient.decode(res);
     _apiClient.token = decoded['token'];
-    return AuthResult(token: decoded['token'], user: AppUser.fromJson(decoded['user']), message: decoded['message']);
+    return AuthResult(
+      token: decoded['token'],
+      user: AppUser.fromJson(decoded['user']),
+      message: decoded['message'],
+    );
   }
 
   Future<String> resendVerificationEmail() async {
     final res = await _apiClient.post('/auth/email/resend-verification', {});
 
     if (res.statusCode != 200) {
-      throw Exception(_apiClient.errorMessage(res, 'Could not send verification email'));
+      throw Exception(
+        _apiClient.errorMessage(res, 'Could not send verification email'),
+      );
     }
 
     return _apiClient.decode(res)['message'] ?? 'Verification email sent';
   }
 
   Future<String> forgotPassword(String email) async {
-    final res = await _apiClient.post('/auth/password/forgot', {'email': email});
+    final res = await _apiClient.post('/auth/password/forgot', {
+      'email': email,
+    });
 
     if (res.statusCode != 200) {
-      throw Exception(_apiClient.errorMessage(res, 'Could not request password reset'));
+      throw Exception(
+        _apiClient.errorMessage(res, 'Could not request password reset'),
+      );
     }
 
-    return _apiClient.decode(res)['message'] ?? 'If that email exists, a password reset link has been sent';
+    return _apiClient.decode(res)['message'] ??
+        'If that email exists, a password reset link has been sent';
   }
 
-  Future<AuthResult> resetPassword({required String token, required String password}) async {
-    final res = await _apiClient.post('/auth/password/reset', {'token': token, 'password': password});
+  Future<AuthResult> resetPassword({
+    required String token,
+    required String password,
+  }) async {
+    final res = await _apiClient.post('/auth/password/reset', {
+      'token': token,
+      'password': password,
+    });
 
     if (res.statusCode != 200) {
       throw Exception(_apiClient.errorMessage(res, 'Could not reset password'));
@@ -96,7 +121,11 @@ class AuthService {
 
     final decoded = _apiClient.decode(res);
     _apiClient.token = decoded['token'];
-    return AuthResult(token: decoded['token'], user: AppUser.fromJson(decoded['user']), message: decoded['message']);
+    return AuthResult(
+      token: decoded['token'],
+      user: AppUser.fromJson(decoded['user']),
+      message: decoded['message'],
+    );
   }
 
   void logout() {

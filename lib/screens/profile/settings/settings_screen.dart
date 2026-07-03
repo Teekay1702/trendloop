@@ -9,7 +9,7 @@ import 'help_center_screen.dart';
 import 'language_region_screen.dart';
 import 'notifications_screen.dart';
 import 'payments_screen.dart';
-import '../verify_email_screen.dart';
+import '../auth/verify_email_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
