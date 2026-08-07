@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/info_page.dart';
+import '../../common/info_page.dart';
 
 class AccountVerificationScreen extends StatelessWidget {
   const AccountVerificationScreen({super.key});

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../state/app_state.dart';
-import '../../theme/app_theme.dart';
-import '../seller/seller_dashboard_screen.dart';
-import '../seller/seller_listings_screen.dart';
+import '../../../state/app_state.dart';
+import '../../../theme/app_theme.dart';
+import '../../seller/seller_dashboard_screen.dart';
+import '../../seller/seller_listings_screen.dart';
 import 'shipping_labels_screen.dart';
 import 'shop_analytics_screen.dart';
-import '../store_profile_screen.dart';
+import '../../store_profile_screen.dart';
 
 class MySellerShopScreen extends StatelessWidget {
   const MySellerShopScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/info_page.dart';
+import '../../common/info_page.dart';
 
 class HelpCenterScreen extends StatelessWidget {
   const HelpCenterScreen({super.key});

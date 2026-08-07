@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/info_page.dart';
+import '../../common/info_page.dart';
 
 class SavedProductsScreen extends StatelessWidget {
   const SavedProductsScreen({super.key});

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/services/banner_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../state/app_state.dart';
@@ -149,11 +150,18 @@ class _LoginScreenState extends State<LoginScreen> {
     final state = context.read<AppState>();
     try {
       await state.login(email.text.trim(), password.text);
+      if (mounted) {
+        BannerService.showSuccess(context, 'Successfully signed in!');
+      }
       if (mounted && widget.popOnSuccess && Navigator.canPop(context)) {
         Navigator.pop(context);
       }
     } catch (e) {
-      setState(() => error = e.toString().replaceFirst('Exception: ', ''));
+      final friendlyError = e.toString().replaceFirst('Exception: ', '');
+      setState(() => error = friendlyError);
+      if (mounted) {
+        BannerService.showError(context, friendlyError);
+      }
     } finally {
       if (mounted) setState(() => submitting = false);
     }

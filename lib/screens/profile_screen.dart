@@ -4,11 +4,11 @@ import 'package:provider/provider.dart';
 import '../state/app_state.dart';
 import '../theme/app_theme.dart';
 import '../screens/auth/login_screen.dart';
-import 'profile/my_seller_shop_screen.dart';
+import 'profile/my_seller_shop/my_seller_shop_screen.dart';
 import 'profile/orders_screen.dart';
-import 'profile/settings_screen.dart';
-import 'profile/trust_safety_screen.dart';
-import 'profile/wishlist_screen.dart';
+import 'profile/settings/settings_screen.dart';
+import 'profile/trust_safety/trust_safety_screen.dart';
+import 'profile/wishlist/wishlist_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

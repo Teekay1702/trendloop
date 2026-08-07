@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../state/app_state.dart';
-import '../../theme/app_theme.dart';
+import '../../../state/app_state.dart';
+import '../../../theme/app_theme.dart';
 import 'addresses_screen.dart';
 import 'appearance_screen.dart';
 import 'help_center_screen.dart';
 import 'language_region_screen.dart';
 import 'notifications_screen.dart';
 import 'payments_screen.dart';
-import '../auth/verify_email_screen.dart';
+import '../../auth/verify_email_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

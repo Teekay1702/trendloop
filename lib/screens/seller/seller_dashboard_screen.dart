@@ -5,8 +5,8 @@ import '../../services/seller_service.dart';
 import '../../state/app_state.dart';
 import '../../theme/app_theme.dart';
 import '../store_profile_screen.dart';
-import '../profile/shipping_labels_screen.dart';
-import '../profile/shop_analytics_screen.dart';
+import '../profile/my_seller_shop/shipping_labels_screen.dart';
+import '../profile/my_seller_shop/shop_analytics_screen.dart';
 import '../profile/promotions_screen.dart';
 
 class SellerDashboardScreen extends StatefulWidget {

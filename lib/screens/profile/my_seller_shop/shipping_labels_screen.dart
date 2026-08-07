@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common/info_page.dart';
+import '../../common/info_page.dart';
 
 class ShippingLabelsScreen extends StatelessWidget {
   const ShippingLabelsScreen({super.key});

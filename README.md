@@ -218,7 +218,7 @@ Start the backend first:
 
 ```bash
 cd ../backend
-docker compose up -d --build
+nrun dev
 ```
 
 Then run Flutter:

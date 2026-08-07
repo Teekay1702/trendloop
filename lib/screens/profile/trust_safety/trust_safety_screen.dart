@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/app_theme.dart';
+import '../../../theme/app_theme.dart';
 import 'account_verification_screen.dart';
 import 'buyer_protection_screen.dart';
 import 'disputes_returns_screen.dart';

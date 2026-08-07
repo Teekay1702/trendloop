@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/services/banner_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../state/app_state.dart';
@@ -165,10 +166,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         bio: bio.text.trim(),
       );
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Account created. Please verify your email.'),
-          ),
+        BannerService.showSuccess(
+          context,
+          'Account created! Please check your email for a verification code.',
         );
         Navigator.pushReplacement(
           context,
@@ -176,7 +176,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         );
       }
     } catch (e) {
-      setState(() => error = e.toString().replaceFirst('Exception: ', ''));
+      final friendlyError = e.toString().replaceFirst('Exception: ', '');
+      setState(() => error = friendlyError);
+      if (mounted) {
+        BannerService.showError(context, friendlyError);
+      }
     } finally {
       if (mounted) setState(() => submitting = false);
     }
